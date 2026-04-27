@@ -1,4 +1,4 @@
-namespace Models.Enums
+namespace RetailingOrderSystem.Models.Enums
 {
     public enum StockStatus
     {
