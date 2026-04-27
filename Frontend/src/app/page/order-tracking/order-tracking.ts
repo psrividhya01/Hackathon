@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { OrderService } from '../services/order.service';
+import { NavbarComponent } from '../../components/navbar/navbar';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-order-tracking',
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent],
-  templateUrl: './order-tracking.component.html',
-  styleUrls: ['./order-tracking.component.css']
+  templateUrl: './order-tracking.html',
+  styleUrls: ['./order-tracking.css']
 })
 export class OrderTrackingComponent implements OnInit {
   steps = ['Pending', 'Confirmed', 'Processing', 'Shipped', 'Delivered'];

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { CartService } from '../services/cart.service';
+import { NavbarComponent } from '../../components/navbar/navbar';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent],
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  templateUrl: './cart.html',
+  styleUrls: ['./cart.css']
 })
 export class CartComponent implements OnInit {
   constructor(public cartService: CartService) {}

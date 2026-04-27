@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../components/navbar/navbar';
 
 @Component({
   selector: 'app-order-success',
-  imports: [],
+  imports: [RouterModule, NavbarComponent],
   templateUrl: './order-success.html',
-  styleUrl: './order-success.css',
+  styleUrls: ['./order-success.css'],
 })
 export class OrderSuccess {
 
