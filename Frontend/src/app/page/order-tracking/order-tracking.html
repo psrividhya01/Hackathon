@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<div class="container py-4" style="max-width: 700px">
+
+  @if (orderService.loading()) {
+    <div class="text-center py-5"><span class="spinner-border text-primary"></span></div>
+  } @else if (orderService.selectedOrder(); as order) {
+    <h4 class="fw-bold text-dark mb-1">
+      <i class="bi bi-geo-alt me-2 text-primary"></i>Track Order #{{ order.id }}
+    </h4>
+    <p class="text-muted small mb-4">Placed on {{ order.createdAt | date:'mediumDate' }}</p>
+
+    <!-- Progress Tracker -->
+    <div class="card shadow-sm p-4 mb-4">
+      <div class="tracking-steps">
+        @for (step of steps; track step; let i = $index) {
+          <div class="track-step d-flex align-items-start gap-3">
+            <div class="track-icon-wrap d-flex flex-column align-items-center">
+              <div class="track-icon"
+                [class.done]="stepIndex(order.status) >= i"
+                [class.current]="stepIndex(order.status) === i">
+                @if (stepIndex(order.status) > i) {
+                  <i class="bi bi-check-lg"></i>
+                } @else {
+                  <i class="bi bi-circle-fill" style="font-size:0.5rem"></i>
+                }
+              </div>
+              @if (i < steps.length - 1) {
+                <div class="track-line" [class.done]="stepIndex(order.status) > i"></div>
+              }
+            </div>
+            <div class="pb-4">
+              <div class="fw-semibold"
+                [class.text-primary]="stepIndex(order.status) >= i"
+                [class.text-muted]="stepIndex(order.status) < i">
+                {{ step }}
+              </div>
+              @if (stepIndex(order.status) === i) {
+                <small class="text-muted">Current status</small>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="card shadow-sm p-4">
+      <h6 class="fw-bold mb-3 text-dark">Order Items</h6>
+      @for (item of order.orderItems; track item.id) {
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <div>
+            <span class="fw-semibold">{{ item.productVariant?.product?.name }}</span>
+            <small class="text-muted d-block">{{ item.productVariant?.variantName }} × {{ item.quantity }}</small>
+          </div>
+          <span class="fw-bold text-primary">₹{{ item.price * item.quantity }}</span>
+        </div>
+      }
+      <div class="d-flex justify-content-between fw-bold mt-3">
+        <span>Total</span>
+        <span class="text-primary">₹{{ order.totalAmount }}</span>
+      </div>
+    </div>
+  }
+</div>

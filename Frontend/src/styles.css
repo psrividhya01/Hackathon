@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+
+:root {
+  --hcl-blue: #0a6ed1;
+  --hcl-light: #e8f4fd;
+  --hcl-dark: #0a1628;
+  --hcl-accent: #4db8ff;
+}
+
+body { background: #f0f7ff; margin: 0; }
+
+.btn-primary { background: var(--hcl-blue) !important; border-color: var(--hcl-blue) !important; }
+.btn-primary:hover { background: #085bb5 !important; }
+.btn-outline-primary { color: var(--hcl-blue) !important; border-color: var(--hcl-blue) !important; }
+.btn-outline-primary:hover { background: var(--hcl-blue) !important; color: #fff !important; }
+
+.text-primary { color: var(--hcl-blue) !important; }
+.bg-primary { background: var(--hcl-blue) !important; }
+.border-primary { border-color: var(--hcl-blue) !important; }
+
+.card { border-radius: 12px !important; border: none !important; }
+.card:hover { box-shadow: 0 4px 20px rgba(10,110,209,0.12) !important; }
+
+.navbar-custom { background: #fff; border-bottom: 2px solid var(--hcl-blue); }
+
+.page-header { margin-bottom: 1.5rem; }
+.page-title { font-size: 1.3rem; font-weight: 700; color: var(--hcl-dark); }
+
+.table thead { background: var(--hcl-dark); color: #fff; }
+.modal-header { background: var(--hcl-blue); color: #fff; }
+.modal-header .btn-close { filter: invert(1); }
+
+.badge-pending { background: #f59e0b !important; }
+.badge-confirmed { background: var(--hcl-blue) !important; }
+.badge-delivered { background: #10b981 !important; }
+.badge-cancelled { background: #ef4444 !important; }
+
+.modal-backdrop-custom {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45); z-index: 1040;
+}
+.modal-custom {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050; width: 100%; max-width: 500px;
+  border-radius: 12px !important; overflow: hidden;
+}
