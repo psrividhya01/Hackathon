@@ -26,10 +26,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddHttpClient<IInventoryApiService, InventoryApiService>(c =>
 {
-    c.BaseAddress = new Uri("https://localhost:5001/");
+    c.BaseAddress = new Uri("http://localhost:5064/");
 });
-
-// BE1 Services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
@@ -37,7 +35,6 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IVariantService, VariantService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 
-// JWT Authentication Setup
 var jwtKey = builder.Configuration["Jwt:Key"] ?? "RetailBookingSuperSecretKey123!";
 var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "RetailBooking";
 var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "RetailBookingUsers";

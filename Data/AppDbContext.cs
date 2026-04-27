@@ -29,6 +29,14 @@ namespace RetailingOrderSystem.Data
             modelBuilder.Entity<ProductVariant>()
                 .Property(x => x.Price)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Order>()
+                .Property(x => x.TotalAmount)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<OrderItem>()
+                .Property(x => x.Price)
+                .HasPrecision(18, 2);
         }
     }
 }

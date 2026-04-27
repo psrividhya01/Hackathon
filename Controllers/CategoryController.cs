@@ -48,4 +48,3 @@ public class CategoryController : ControllerBase
         return Ok(await _service.Delete(id));
     }
 }
-

@@ -18,8 +18,15 @@ namespace RetailingOrderSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Place([FromBody] PlaceOrderDto request)
         {
-            await _service.PlaceOrder(request.UserId);
-            return Ok("Order placed");
+            try
+            {
+                await _service.PlaceOrder(request.UserId);
+                return Ok("Order placed");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
     }
 }
