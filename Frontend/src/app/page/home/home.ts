@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { CategoryService } from '../services/category-service';
-import { ProductService } from '../services/product-service';
-import { CartService } from '../services/cart-service';
-import { WishlistService } from '../services/wishlist.service';
-import { AuthService } from '../services/auth-service';
+import { NavbarComponent } from '../../components/navbar/navbar';
+import { CategorieService } from '../../services/categorie-service';
+import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { WishlistService } from '../../services/wishlist.service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-home',
 
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './home.html',
+  styleUrls: ['./home.css'],
 })
 export class HomeComponent implements OnInit {
   constructor(
-    public categoryService: CategoryService,
+    public categoryService: CategorieService,
     public productService: ProductService,
     public cartService: CartService,
     public wishlistService: WishlistService,

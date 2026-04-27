@@ -2,16 +2,16 @@ import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { CartService } from '../services/cart.service';
-import { OrderService } from '../services/order.service';
+import { NavbarComponent } from '../../components/navbar/navbar';
+import { CartService } from '../../services/cart.service';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-order',
   standalone: true,
   imports: [CommonModule, FormsModule, NavbarComponent],
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  templateUrl: './order.html',
+  styleUrls: ['./order.css']
 })
 export class OrderComponent implements OnInit {
   step = signal<1 | 2 | 3>(1);

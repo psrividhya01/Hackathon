@@ -1,1 +1,89 @@
-/* Styles for Product Detail */
+.product-image-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.product-image-placeholder {
+  height: 320px;
+  background: linear-gradient(135deg, #e8f4fd 0%, #d0e8fa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: #0a6ed1;
+}
+
+.wishlist-float-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.wishlist-float-btn:hover {
+  transform: scale(1.1);
+}
+
+.bg-light-blue {
+  background: #e8f4fd;
+}
+
+.variant-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.variant-chip:hover {
+  border-color: #0a6ed1;
+  background: #f0f7ff;
+}
+.variant-active {
+  border-color: #0a6ed1;
+  background: #e8f4fd;
+  box-shadow: 0 0 0 3px rgba(10, 110, 209, 0.15);
+}
+
+.variant-price {
+  font-size: 0.85rem;
+  color: #0a6ed1;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.selected-variant-card {
+  background: #f8fbff;
+  border-radius: 12px;
+  border: 1px solid #e8f4fd;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-control {
+  background: #f8fbff;
+  border-radius: 8px;
+  padding: 2px;
+}
