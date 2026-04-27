@@ -20,7 +20,7 @@ public class CategoryService : ICategoryService
     }
 
  
-    public async Task<Category> GetById(int id)
+    public async Task<Category?> GetById(int id)
     {
         return await _context.Categories
             .FirstOrDefaultAsync(x => x.Id == id);

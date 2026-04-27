@@ -15,5 +15,14 @@ public class AppDbContext : DbContext
      public DbSet<Brand> Brands => Set<Brand>();
      public DbSet<ProductVariant> ProductVariants => Set<ProductVariant>();
      public DbSet<Inventory> Inventories => Set<Inventory>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<ProductVariant>()
+            .Property(x => x.Price)
+            .HasPrecision(18, 2);
+    }
         
 }

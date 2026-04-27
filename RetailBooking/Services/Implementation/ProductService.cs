@@ -24,7 +24,7 @@ public class ProductService : IProductService
     }
 
    
-    public async Task<Product> GetById(int id)
+    public async Task<Product?> GetById(int id)
     {
         return await _context.Products
             .Include(x => x.Category)

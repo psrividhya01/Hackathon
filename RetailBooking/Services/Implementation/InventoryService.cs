@@ -24,7 +24,7 @@ public class InventoryService : IInventoryService
         }
 
         // GET BY VARIANT ID
-        public async Task<Inventory> GetByVariantId(int variantId)
+        public async Task<Inventory?> GetByVariantId(int variantId)
         {
             return await _context.Inventories
                 .Include(x => x.ProductVariant)

@@ -29,7 +29,8 @@ namespace RetailBooking.Controllers;
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _service.GetById(id));
+            var product = await _service.GetById(id);
+            return product is null ? NotFound("Product Not Found") : Ok(product);
         }
 
         // POST: api/products

@@ -27,7 +27,8 @@ public class BrandController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        return Ok(await _service.GetById(id));
+        var brand = await _service.GetById(id);
+        return brand is null ? NotFound("Brand Not Found") : Ok(brand);
     }
 
     // POST: api/brands

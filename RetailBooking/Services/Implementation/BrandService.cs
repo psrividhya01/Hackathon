@@ -21,7 +21,7 @@ namespace RetailOrderingSystem.Services.Implementations
         }
 
         // GET BY ID
-        public async Task<Brand> GetById(int id)
+        public async Task<Brand?> GetById(int id)
         {
             return await _context.Brands
                 .FirstOrDefaultAsync(x => x.Id == id);

@@ -28,7 +28,8 @@ public class VariantController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        return Ok(await _service.GetById(id));
+        var variant = await _service.GetById(id);
+        return variant is null ? NotFound("Variant Not Found") : Ok(variant);
     }
 
     // POST: api/variants

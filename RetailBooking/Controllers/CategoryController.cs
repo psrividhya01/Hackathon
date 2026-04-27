@@ -26,7 +26,8 @@ public class CategoryController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        return Ok(await _service.GetById(id));
+        var category = await _service.GetById(id);
+        return category is null ? NotFound("Category Not Found") : Ok(category);
     }
 
     [HttpPost]

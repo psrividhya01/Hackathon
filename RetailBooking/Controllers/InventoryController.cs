@@ -28,7 +28,8 @@ public class InventoryController : ControllerBase
     [HttpGet("{variantId}")]
     public async Task<IActionResult> GetByVariantId(int variantId)
     {
-        return Ok(await _service.GetByVariantId(variantId));
+        var inventory = await _service.GetByVariantId(variantId);
+        return inventory is null ? NotFound("Inventory Not Found") : Ok(inventory);
     }
 
     // POST: api/inventory

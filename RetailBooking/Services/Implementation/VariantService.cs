@@ -23,7 +23,7 @@ public class VariantService : IVariantService
     }
 
     // GET VARIANT BY ID
-    public async Task<ProductVariant> GetById(int id)
+    public async Task<ProductVariant?> GetById(int id)
     {
         return await _context.ProductVariants
             .Include(x => x.Product)
