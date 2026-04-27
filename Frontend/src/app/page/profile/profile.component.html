@@ -1,0 +1,114 @@
+<app-navbar></app-navbar>
+
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- Left: Profile Card -->
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm p-4 text-center">
+        <div class="avatar-lg mx-auto mb-3">
+          <i class="bi bi-person-fill text-white fs-1"></i>
+        </div>
+        <h5 class="fw-bold mb-1">{{ auth.user()?.name }}</h5>
+        <p class="text-muted small mb-3">{{ auth.user()?.email }}</p>
+        <span class="badge bg-light-blue text-primary px-3 py-2 mb-4">
+          <i class="bi bi-shield-check me-1"></i>
+          {{ auth.user()?.role === 'admin' ? 'Administrator' : 'Customer' }}
+        </span>
+
+        <div class="d-grid gap-2">
+          <button
+            class="btn fw-semibold btn-sm"
+            [class.btn-primary]="activeTab() === 'profile'"
+            [class.btn-outline-primary]="activeTab() !== 'profile'"
+            (click)="activeTab.set('profile')"
+          >
+            <i class="bi bi-person me-2"></i>My Profile
+          </button>
+          <button
+            class="btn fw-semibold btn-sm"
+            [class.btn-primary]="activeTab() === 'orders'"
+            [class.btn-outline-primary]="activeTab() !== 'orders'"
+            (click)="activeTab.set('orders')"
+          >
+            <i class="bi bi-bag me-2"></i>My Orders
+          </button>
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Tab Content -->
+    <div class="col-12 col-md-8">
+      <!-- Profile Tab -->
+      @if (activeTab() === 'profile') {
+        <div class="card shadow-sm p-4">
+          <h5 class="fw-bold mb-4 text-dark">
+            <i class="bi bi-person-lines-fill me-2 text-primary"></i>Account Details
+          </h5>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold small text-muted">FULL NAME</label>
+              <div class="form-control bg-light">{{ auth.user()?.name }}</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small text-muted">EMAIL ADDRESS</label>
+              <div class="form-control bg-light">{{ auth.user()?.email }}</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small text-muted">ROLE</label>
+              <div class="form-control bg-light text-capitalize">{{ auth.user()?.role }}</div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Orders Tab -->
+      @if (activeTab() === 'orders') {
+        <div class="card shadow-sm">
+          <div class="card-body p-3">
+            <h5 class="fw-bold mb-3 text-dark">
+              <i class="bi bi-bag me-2 text-primary"></i>My Orders
+            </h5>
+
+            @if (orderService.loading()) {
+              <div class="text-center py-4">
+                <span class="spinner-border text-primary"></span>
+              </div>
+            } @else {
+              @for (order of orderService.myOrders(); track order.id) {
+                <div class="order-row border rounded-3 p-3 mb-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="fw-bold text-dark">#{{ order.id }}</span>
+                      <span class="text-muted small ms-2">{{
+                        order.createdAt | date: 'mediumDate'
+                      }}</span>
+                    </div>
+                    <span [ngClass]="statusClass(order.status)">{{ order.status }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <span class="text-muted small">{{ order.orderItems.length }} item(s)</span>
+                    <span class="fw-bold text-primary">₹{{ order.totalAmount }}</span>
+                  </div>
+                  <a
+                    [routerLink]="['/order-tracking', order.id]"
+                    class="btn btn-outline-primary btn-sm mt-2"
+                  >
+                    <i class="bi bi-geo-alt me-1"></i>Track Order
+                  </a>
+                </div>
+              } @empty {
+                <div class="text-center py-4 text-muted">
+                  <i class="bi bi-bag-x fs-1 d-block mb-2"></i>
+                  No orders yet.
+                </div>
+              }
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

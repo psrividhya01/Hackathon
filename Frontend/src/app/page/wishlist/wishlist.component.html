@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold text-dark mb-0">
+      <i class="bi bi-heart me-2 text-danger"></i>My Wishlist
+    </h4>
+    @if (wishlistService.items().length > 0) {
+      <button class="btn btn-outline-danger btn-sm" (click)="clearAll()">
+        <i class="bi bi-trash me-1"></i>Clear All
+      </button>
+    }
+  </div>
+
+  @if (wishlistService.items().length === 0) {
+    <div class="text-center py-5">
+      <div class="empty-icon mx-auto mb-3">
+        <i class="bi bi-heart text-muted"></i>
+      </div>
+      <h5 class="text-muted mb-2">Your wishlist is empty</h5>
+      <p class="text-muted small mb-4">Save items you love for later!</p>
+      <a routerLink="/menu" class="btn btn-primary">
+        <i class="bi bi-grid me-2"></i>Browse Menu
+      </a>
+    </div>
+  } @else {
+    <p class="text-muted small mb-3">{{ wishlistService.count() }} item(s) saved</p>
+
+    <div class="row g-3">
+      @for (product of wishlistService.items(); track product.id) {
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="card wishlist-card h-100 shadow-sm">
+            <div class="product-img-wrap">
+              <div class="product-img-placeholder">
+                <i class="bi bi-box-seam fs-1 text-primary"></i>
+              </div>
+              <button class="remove-btn" (click)="removeItem(product.id)">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+            <div class="card-body p-3">
+              <span class="badge bg-light-blue text-primary small mb-1">
+                {{ product.category?.name || 'General' }}
+              </span>
+              <h6 class="fw-bold mb-1 text-dark">{{ product.name }}</h6>
+              <p class="text-muted small mb-2">{{ product.brand?.name }}</p>
+              <div class="d-flex gap-2">
+                <a
+                  [routerLink]="['/products', product.id]"
+                  class="btn btn-primary btn-sm flex-grow-1"
+                >
+                  <i class="bi bi-eye me-1"></i>View
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

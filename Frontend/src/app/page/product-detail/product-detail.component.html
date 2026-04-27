@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+
+<div class="container py-4">
+
+  @if (productService.loading()) {
+    <div class="text-center py-5">
+      <span class="spinner-border text-primary"></span>
+      <p class="text-muted mt-2 small">Loading product...</p>
+    </div>
+  } @else if (productService.selectedProduct(); as product) {
+
+    <!-- Breadcrumb -->
+    <nav class="mb-4">
+      <ol class="breadcrumb small">
+        <li class="breadcrumb-item"><a routerLink="/home" class="text-primary">Home</a></li>
+        <li class="breadcrumb-item"><a routerLink="/menu" class="text-primary">Menu</a></li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4">
+
+      <!-- Product Image Area -->
+      <div class="col-12 col-md-5">
+        <div class="product-image-card card shadow-sm border-0">
+          <div class="product-image-placeholder">
+            <i class="bi bi-box-seam"></i>
+          </div>
+          <!-- Wishlist Button -->
+          <button class="wishlist-float-btn" (click)="toggleWishlist()">
+            <i class="bi" [ngClass]="isWishlisted() ? 'bi-heart-fill text-danger' : 'bi-heart text-muted'"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="col-12 col-md-7">
+        <div class="d-flex flex-wrap gap-2 mb-2">
+          <span class="badge bg-light-blue text-primary">
+            {{ product.category?.name || 'General' }}
+          </span>
+          <span class="badge bg-light text-dark">
+            {{ product.brand?.name }}
+          </span>
+        </div>
+
+        <h3 class="fw-bold text-dark mb-3">{{ product.name }}</h3>
+
+        <!-- Variants -->
+        <div class="mb-4">
+          <h6 class="fw-semibold text-dark mb-2">
+            <i class="bi bi-tags me-2 text-primary"></i>Available Variants
+          </h6>
+
+          @if (variantService.loading()) {
+            <span class="spinner-border spinner-border-sm text-primary"></span>
+          } @else if (variantService.variants().length === 0) {
+            <p class="text-muted small">No variants available.</p>
+          } @else {
+            <div class="d-flex flex-wrap gap-2">
+              @for (variant of variantService.variants(); track variant.id) {
+                <button
+                  class="variant-chip"
+                  [class.variant-active]="selectedVariant()?.id === variant.id"
+                  (click)="selectVariant(variant)"
+                >
+                  <span class="fw-semibold">{{ variant.variantName }}</span>
+                  <span class="variant-price">₹{{ variant.price }}</span>
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Selected Variant Info -->
+        @if (selectedVariant(); as sv) {
+          <div class="selected-variant-card p-3 mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <p class="text-muted small mb-1">Selected</p>
+                <h5 class="fw-bold text-dark mb-0">{{ sv.variantName }}</h5>
+              </div>
+              <h4 class="fw-bold text-primary mb-0">₹{{ sv.price }}</h4>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="fw-semibold small text-dark">Quantity:</span>
+            <div class="qty-control d-flex align-items-center">
+              <button class="btn btn-outline-primary btn-sm qty-btn" (click)="decrementQty()">
+                <i class="bi bi-dash"></i>
+              </button>
+              <span class="fw-bold px-3">{{ quantity() }}</span>
+              <button class="btn btn-outline-primary btn-sm qty-btn" (click)="incrementQty()">
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+            <span class="text-muted small">
+              Total: <span class="fw-bold text-primary">₹{{ sv.price * quantity() }}</span>
+            </span>
+          </div>
+
+          <!-- Actions -->
+          <div class="d-flex gap-3">
+            <button
+              class="btn btn-primary flex-grow-1 fw-semibold py-2"
+              [class.btn-success]="addedToCart()"
+              (click)="addToCart()"
+              [disabled]="addedToCart()"
+            >
+              @if (addedToCart()) {
+                <i class="bi bi-check-lg me-2"></i>Added to Cart!
+              } @else {
+                <i class="bi bi-cart-plus me-2"></i>Add to Cart
+              }
+            </button>
+            <a routerLink="/cart" class="btn btn-outline-primary py-2 px-4">
+              <i class="bi bi-cart3 me-1"></i>Go to Cart
+            </a>
+          </div>
+        } @else {
+          <div class="alert alert-info small py-2 d-flex align-items-center gap-2">
+            <i class="bi bi-info-circle"></i>Select a variant to add to cart.
+          </div>
+        }
+
+      </div>
+    </div>
+
+  } @else {
+    <div class="text-center py-5">
+      <i class="bi bi-box fs-1 text-muted d-block mb-3"></i>
+      <h5 class="text-muted">Product not found</h5>
+      <a routerLink="/menu" class="btn btn-primary mt-3">Back to Menu</a>
+    </div>
+  }
+
+</div>

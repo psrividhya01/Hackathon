@@ -1,0 +1,27 @@
+.stepper { flex-wrap: wrap; gap: 4px; }
+
+.step-circle {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #e8f4fd; color: #aaa;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.step-circle.active { background: #0a6ed1; color: #fff; }
+.step-circle.current { box-shadow: 0 0 0 4px rgba(10,110,209,0.2); }
+
+.step-line {
+  flex: 1; height: 2px; background: #e0e0e0;
+  min-width: 30px; transition: background 0.3s;
+}
+.step-line.active { background: #0a6ed1; }
+
+.payment-option {
+  cursor: pointer; transition: all 0.2s;
+  border-color: #dee2e6 !important;
+}
+.payment-option:hover { border-color: #0a6ed1 !important; background: #f8fbff; }
+.payment-option.selected { border-color: #0a6ed1 !important; background: #e8f4fd; }
+
+.form-control:focus { border-color: #0a6ed1; box-shadow: 0 0 0 0.2rem rgba(10,110,209,0.15); }

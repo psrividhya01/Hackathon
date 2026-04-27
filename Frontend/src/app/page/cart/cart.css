@@ -1,0 +1,10 @@
+.cart-item { transition: background 0.2s; }
+.cart-item:hover { background: #f8fbff; }
+
+.cart-img {
+  width: 56px; height: 56px; background: #e8f4fd;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.qty-btn { width: 28px; height: 28px; padding: 0; }

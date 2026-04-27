@@ -1,0 +1,45 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a1628 0%, #0a6ed1 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-header-custom {
+  background: linear-gradient(135deg, #0a6ed1, #0a1628);
+  padding: 32px 24px 24px;
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group-text {
+  background: #f8fbff;
+  border-right: none;
+  color: #0a6ed1;
+}
+
+.form-control {
+  border-left: none;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #0a6ed1;
+}
+
+.input-group:focus-within .input-group-text {
+  border-color: #0a6ed1;
+}

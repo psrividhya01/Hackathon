@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Banner -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <span class="badge bg-white text-primary fw-semibold mb-3 px-3 py-2">
+          🍕 Pizza • 🥤 Cold Drinks • 🍞 Breads
+        </span>
+        <h1 class="display-5 fw-bold text-white mb-3">Fresh Food, <br />Delivered Fast!</h1>
+        <p class="text-white-50 mb-4">
+          Browse our wide selection of fresh items and get them delivered right to your door.
+        </p>
+        <div class="d-flex gap-3">
+          <a routerLink="/menu" class="btn btn-white fw-semibold px-4">
+            <i class="bi bi-grid me-2"></i>Browse Menu
+          </a>
+          <a routerLink="/order-history" class="btn btn-outline-white fw-semibold px-4">
+            <i class="bi bi-clock-history me-2"></i>Track Orders
+          </a>
+        </div>
+      </div>
+      <div class="col-md-5 text-center d-none d-md-block">
+        <div class="hero-icon">🍕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="py-4 bg-white">
+  <div class="container">
+    <h5 class="fw-bold mb-3 text-dark">
+      <i class="bi bi-grid-3x3-gap me-2 text-primary"></i>Browse by Category
+    </h5>
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="btn btn-primary btn-sm rounded-pill px-3" (click)="clearFilter()">All</button>
+      @for (cat of categoryService.categories(); track cat.id) {
+        <button
+          class="btn btn-outline-primary btn-sm rounded-pill px-3"
+          (click)="filterByCategory(cat.id)"
+        >
+          {{ cat.name }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="py-4">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-bold text-dark mb-0">
+        <i class="bi bi-box-seam me-2 text-primary"></i>Our Products
+      </h5>
+      <a routerLink="/menu" class="btn btn-outline-primary btn-sm">View All</a>
+    </div>
+
+    @if (productService.loading()) {
+      <div class="text-center py-5">
+        <span class="spinner-border text-primary"></span>
+        <p class="text-muted mt-2 small">Loading products...</p>
+      </div>
+    } @else {
+      <div class="row g-3">
+        @for (product of productService.products().slice(0, 8); track product.id) {
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card product-card h-100 shadow-sm">
+              <div class="product-img-wrap">
+                <div class="product-img-placeholder">
+                  <i class="bi bi-box-seam fs-1 text-primary"></i>
+                </div>
+                <button class="wishlist-btn" (click)="wishlistService.toggle(product)">
+                  <i
+                    class="bi"
+                    [ngClass]="
+                      wishlistService.isWishlisted(product.id)
+                        ? 'bi-heart-fill text-danger'
+                        : 'bi-heart text-muted'
+                    "
+                  >
+                  </i>
+                </button>
+              </div>
+              <div class="card-body p-3">
+                <span class="badge bg-light-blue text-primary small mb-1">
+                  {{ product.category?.name || 'General' }}
+                </span>
+                <h6 class="fw-bold mb-1 text-dark">{{ product.name }}</h6>
+                <p class="text-muted small mb-2">{{ product.brand?.name }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <a [routerLink]="['/products', product.id]" class="btn btn-outline-primary btn-sm"
+                    >View</a
+                  >
+                  <button class="btn btn-primary btn-sm">
+                    <i class="bi bi-cart-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <div class="col-12 text-center py-5 text-muted">
+            <i class="bi bi-box fs-1 d-block mb-2"></i>
+            No products found.
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Order Tracking CTA -->
+<section class="py-4 bg-white">
+  <div class="container">
+    <div class="tracking-cta d-flex align-items-center justify-content-between p-4 rounded-3">
+      <div>
+        <h5 class="fw-bold text-white mb-1">Track Your Order</h5>
+        <p class="text-white-50 mb-0 small">See real-time status of your orders</p>
+      </div>
+      <a routerLink="/order-history" class="btn btn-white fw-semibold">
+        <i class="bi bi-search me-2"></i>Track Now
+      </a>
+    </div>
+  </div>
+</section>
