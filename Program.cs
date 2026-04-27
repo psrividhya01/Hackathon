@@ -1,3 +1,6 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using RetailingOrderSystem.Data;
 using RetailingOrderSystem.Repositories.Implementation;
@@ -26,6 +29,36 @@ builder.Services.AddHttpClient<IInventoryApiService, InventoryApiService>(c =>
     c.BaseAddress = new Uri("https://localhost:5001/");
 });
 
+// BE1 Services
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IVariantService, VariantService>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+
+// JWT Authentication Setup
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "RetailBookingSuperSecretKey123!";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "RetailBooking";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "RetailBookingUsers";
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +70,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
