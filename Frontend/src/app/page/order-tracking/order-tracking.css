@@ -1,0 +1,18 @@
+.track-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #e8f4fd; color: #aaa;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; flex-shrink: 0; transition: all 0.3s;
+}
+
+.track-icon.done { background: #0a6ed1; color: #fff; }
+.track-icon.current {
+  background: #0a6ed1; color: #fff;
+  box-shadow: 0 0 0 5px rgba(10,110,209,0.2);
+}
+
+.track-line {
+  width: 2px; flex: 1; min-height: 30px;
+  background: #e0e0e0; margin: 4px 0; transition: background 0.3s;
+}
+.track-line.done { background: #0a6ed1; }
