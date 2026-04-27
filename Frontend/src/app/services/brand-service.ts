@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Brand, BrandRequest } from '../models';
+import { Brand, BrandRequest } from '../models/brand.model';
 
 @Injectable({ providedIn: 'root' })
 export class BrandService {

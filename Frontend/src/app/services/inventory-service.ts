@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Inventory, InventoryUpdateRequest } from '../models';
+import { Inventory, InventoryUpdateRequest } from '../models/inventory.model';
 
 @Injectable({ providedIn: 'root' })
 export class InventoryService {
