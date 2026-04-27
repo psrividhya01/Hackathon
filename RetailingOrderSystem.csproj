@@ -7,19 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.26" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\DTOs\" />
-    <Folder Include="Models\Enums\" />
-    <Folder Include="Data\" />
     <Folder Include="Hubs\" />
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Repositories\Implementation\" />
-    <Folder Include="Services\Interfaces\" />
-    <Folder Include="Services\Implementation\" />
   </ItemGroup>
 
 </Project>
