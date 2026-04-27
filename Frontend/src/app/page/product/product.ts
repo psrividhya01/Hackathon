@@ -7,8 +7,8 @@ import { ProductService } from '../services/product.service';
 import { CategoryService } from '../services/category.service';
 import { BrandService } from '../services/brand.service';
 import { CartService } from '../services/cart.service';
-import { WishlistService } from '../services/wishlist.service';
-import { Product } from '../models';
+import{ WishlistService } from '../services/wishlist.service';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-menu',

@@ -4,7 +4,7 @@ import {
   Order,
   PlaceOrderRequest,
   UpdateOrderStatusRequest
-} from '../models';
+} from '../models/order.model';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {

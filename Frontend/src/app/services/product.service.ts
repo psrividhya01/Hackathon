@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Product, ProductRequest } from '../models';
+import { Product, ProductRequest } from '../models/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
