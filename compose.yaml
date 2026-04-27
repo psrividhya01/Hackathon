@@ -1,0 +1,7 @@
+﻿services:
+  retailbooking:
+    image: retailbooking
+    build:
+      context: .
+      dockerfile: RetailBooking/Dockerfile
+
