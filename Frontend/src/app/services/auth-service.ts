@@ -1,8 +1,8 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthResponse, LoginRequest, RegisterRequest, User } from '../models';
 
+import { User, RegisterRequest, LoginRequest, AuthResponse } from '../models/user.model';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'http://localhost:5000/api/auth';

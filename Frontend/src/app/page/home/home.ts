@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CategoryService } from '../services/category-service';
-import { ProductService } from '../services/product.service';
+import { ProductService } from '../services/product-service';
 import { CartService } from '../services/cart-service';
-import { WishlistService } from '../services/wishlist-service';
+import { WishlistService } from '../services/wishlist.service';
 import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-home',
+
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent],
   templateUrl: './home.component.html',

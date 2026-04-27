@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ProductVariant, ProductVariantRequest } from '../models';
+import { ProductVariant, ProductVariantRequest } from '../models/product-variant.model';
 
 @Injectable({ providedIn: 'root' })
 export class VariantService {
