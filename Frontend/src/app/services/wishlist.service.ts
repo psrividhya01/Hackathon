@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Product } from '../models';
+import { Product } from '../models/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class WishlistService {

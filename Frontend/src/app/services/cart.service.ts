@@ -1,6 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cart, CartItem, AddToCartRequest, UpdateCartRequest } from '../models';
+import { Cart, CartItem, AddToCartRequest, UpdateCartRequest } from '../models/cart.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
