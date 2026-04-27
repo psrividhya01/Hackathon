@@ -7,7 +7,7 @@ namespace RetailingOrderSystem.Controllers;
 
 [ApiController]
 [Route("api/categories")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "admin")]
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryService _service;

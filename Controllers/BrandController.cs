@@ -6,7 +6,7 @@ using RetailingOrderSystem.Services.Interfaces;
 namespace RetailingOrderSystem.Controllers;
 [ApiController]
 [Route("api/brands")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "admin")]
 public class BrandController : ControllerBase
 {
     private readonly IBrandService _service;

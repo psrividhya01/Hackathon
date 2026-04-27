@@ -16,6 +16,7 @@ export class RegisterComponent {
   email = signal('');
   password = signal('');
   confirmPassword = signal('');
+  role = signal('user');
   loading = signal(false);
   error = signal('');
   success = signal(false);
@@ -23,7 +24,7 @@ export class RegisterComponent {
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
-    if (!this.name() || !this.email() || !this.password()) {
+    if (!this.name() || !this.email() || !this.password() || !this.role()) {
       this.error.set('Please fill in all fields.');
       return;
     }
@@ -40,13 +41,24 @@ export class RegisterComponent {
     this.error.set('');
 
     this.auth
-      .register({ name: this.name(), email: this.email(), password: this.password() })
+      .register({ 
+        name: this.name(), 
+        email: this.email(), 
+        password: this.password(),
+        role: this.role()
+      })
       .subscribe({
         next: (res) => {
           this.auth.setSession(res);
           this.loading.set(false);
           this.success.set(true);
-          setTimeout(() => this.router.navigate(['/home']), 1000);
+          setTimeout(() => {
+            if (this.auth.isAdmin()) {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/home']);
+            }
+          }, 1000);
         },
         error: (err) => {
           this.error.set(err.error?.message || 'Registration failed. Please try again.');

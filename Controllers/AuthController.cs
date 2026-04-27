@@ -18,16 +18,30 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest model)
     {
-        var result = await _service.Register(model);
-        return Ok(result);
+        try
+        {
+            var result = await _service.Register(model);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     // POST: api/auth/login
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest model)
     {
-        var result = await _service.Login(model);
-        return Ok(result);
+        try
+        {
+            var result = await _service.Login(model);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 }
 

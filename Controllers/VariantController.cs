@@ -7,7 +7,7 @@ namespace RetailingOrderSystem.Controllers;
 
 [ApiController]
 [Route("api/variants")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "admin")]
 public class VariantController : ControllerBase
 {
     private readonly IVariantService _service;

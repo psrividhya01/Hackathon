@@ -22,35 +22,45 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public async Task<string> Register(RegisterRequest model)
+    public async Task<AuthResponseDto> Register(RegisterRequest model)
     {
         var existingUser = await _context.Users
             .FirstOrDefaultAsync(x => x.Email == model.Email);
 
         if (existingUser != null)
-            return "Email already exists";
+            throw new Exception("Email already exists");
 
         var user = new User
         {
-            Name = model.Username,
+            Name = model.Name,
             Email = model.Email,
             Password = BCrypt.Net.BCrypt.HashPassword(model.Password),
-            Role = model.Role
+            Role = string.IsNullOrEmpty(model.Role) ? "user" : model.Role
         };
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
-        return "User Registered Successfully";
+        return new AuthResponseDto
+        {
+            Token = GenerateToken(user),
+            User = new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Role = user.Role
+            }
+        };
     }
 
-    public async Task<string> Login(LoginRequest model)
+    public async Task<AuthResponseDto> Login(LoginRequest model)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(x => x.Email == model.Email);
 
         if (user == null)
-            return "Invalid Email";
+            throw new Exception("Invalid Email");
 
         bool validPassword = BCrypt.Net.BCrypt.Verify(
             model.Password,
@@ -58,9 +68,19 @@ public class AuthService : IAuthService
         );
 
         if (!validPassword)
-            return "Invalid Password";
+            throw new Exception("Invalid Password");
 
-        return GenerateToken(user);
+        return new AuthResponseDto
+        {
+            Token = GenerateToken(user),
+            User = new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Role = user.Role
+            }
+        };
     }
 
     private string GenerateToken(User user)

@@ -36,7 +36,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.Cart", b =>
@@ -52,7 +52,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.CartItem", b =>
@@ -76,7 +76,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.Category", b =>
@@ -93,7 +93,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.Inventory", b =>
@@ -114,7 +114,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasIndex("ProductVariantId");
 
-                    b.ToTable("Inventories");
+                    b.ToTable("Inventories", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.Order", b =>
@@ -140,7 +140,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.OrderItem", b =>
@@ -167,7 +167,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.Product", b =>
@@ -194,7 +194,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.ProductVariant", b =>
@@ -220,7 +220,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductVariants");
+                    b.ToTable("ProductVariants", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.User", b =>
@@ -249,7 +249,7 @@ namespace RetailingOrderSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("RetailingOrderSystem.Models.Entities.CartItem", b =>

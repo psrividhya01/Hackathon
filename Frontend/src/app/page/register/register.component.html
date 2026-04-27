@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-3">
           <label class="form-label small fw-semibold">Confirm Password</label>
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
@@ -85,6 +85,23 @@
               name="confirmPassword"
               required
             />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label small fw-semibold">Register As</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+            <select
+              class="form-select"
+              [ngModel]="role()"
+              (ngModelChange)="role.set($event)"
+              name="role"
+              required
+            >
+              <option value="user">Customer</option>
+              <option value="admin">Administrator</option>
+            </select>
           </div>
         </div>
 

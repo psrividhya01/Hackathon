@@ -8,7 +8,7 @@ namespace RetailingOrderSystem.Controllers;
 
     [ApiController]
     [Route("api/products")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _service;

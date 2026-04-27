@@ -1,34 +1,44 @@
 .login-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a1628 0%, #0a6ed1 100%);
-}
-
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.card-header-custom {
-  background: linear-gradient(135deg, #0a6ed1, #0a1628);
-  padding: 32px 24px 24px;
-}
-
-.brand-icon {
-  width: 56px;
-  height: 56px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 14px;
+  background: linear-gradient(135deg, var(--dark-900) 0%, var(--brand-deep) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header-custom {
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.brand-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
 .input-group-text {
-  background: #f8fbff;
+  background: var(--surface);
   border-right: none;
-  color: #0a6ed1;
+  color: var(--brand);
 }
 
 .form-control {
@@ -37,9 +47,9 @@
 
 .form-control:focus {
   box-shadow: none;
-  border-color: #0a6ed1;
+  border-color: var(--brand);
 }
 
 .input-group:focus-within .input-group-text {
-  border-color: #0a6ed1;
+  border-color: var(--brand);
 }

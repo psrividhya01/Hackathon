@@ -4,6 +4,6 @@ namespace RetailingOrderSystem.Services.Interfaces;
 
 public interface IAuthService
 {
-    Task<string> Register(RegisterRequest model);
-    Task<string> Login(LoginRequest model);
+    Task<AuthResponseDto> Register(RegisterRequest model);
+    Task<AuthResponseDto> Login(LoginRequest model);
 }

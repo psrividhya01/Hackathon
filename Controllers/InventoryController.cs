@@ -18,7 +18,7 @@ public class InventoryController : ControllerBase
 
     // GET: api/inventory
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> GetAll()
     {
         return Ok(await _service.GetAll());
@@ -26,7 +26,7 @@ public class InventoryController : ControllerBase
 
     // GET: api/inventory/1
     [HttpGet("{variantId}")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> GetByVariantId(int variantId)
     {
         var inventory = await _service.GetByVariantId(variantId);
@@ -35,7 +35,7 @@ public class InventoryController : ControllerBase
 
     // POST: api/inventory
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Create(Inventory model)
     {
         return Ok(await _service.Create(model));
@@ -43,7 +43,7 @@ public class InventoryController : ControllerBase
 
     // PUT: api/inventory/1
     [HttpPut("{variantId}")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Update(int variantId, [FromBody] Inventory model)
     {
         return Ok(await _service.Update(variantId, model));
@@ -51,7 +51,7 @@ public class InventoryController : ControllerBase
 
     // DELETE: api/inventory/1
     [HttpDelete("{variantId}")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Delete(int variantId)
     {
         return Ok(await _service.Delete(variantId));
